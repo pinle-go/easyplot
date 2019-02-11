@@ -1,11 +1,7 @@
 from distutils.core import setup
-# from setuptools import setup, find_packages
 import codecs
 import os
-import re
 import glob
-
-import easyplot
 
 here = os.path.abspath(os.path.dirname(__file__))
 
@@ -13,9 +9,12 @@ here = os.path.abspath(os.path.dirname(__file__))
 with codecs.open(os.path.join(here, 'DESCRIPTION.rst'), encoding='utf-8') as f:
     long_description = f.read()
 
-import easyplot
+with codecs.open(os.path.join(here, 'CHANGELOG.txt'), encoding='utf-8') as f:
+    changelog = f.read()
+    version = changelog.split('\n')[0].strip()
+
 setup(name='EasyPlot',
-      version=easyplot.__version__,
+      version='1.0.1',
       description='A matplotlib wrapper for fast and easy generation of reusable plots',
       author='Sudeep Mandal',
       author_email='sudeepmandal@gmail.com',
@@ -29,7 +28,7 @@ setup(name='EasyPlot',
                     ('images', glob.glob('images/*.png')),
                     ('docs', glob.glob('docs/*.ipynb')),
                    ],
-      # requires = ['matplotlib'],
+      install_requires = ['matplotlib'],
       license='MIT',
       platforms='any',
       classifiers=[
@@ -49,5 +48,4 @@ setup(name='EasyPlot',
       ],
       long_description = long_description,
       keywords='matplotlib wrapper plot easyplot',
-
     )
